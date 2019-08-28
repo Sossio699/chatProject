@@ -17,7 +17,7 @@ class Register;
 
 class User {
 public:
-    User(std::string name) : userName(name) {}
+    User(std::string name, Register &r) : userName(name), userChats(&r) {}
 
     ~User() {}
 
