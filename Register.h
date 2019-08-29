@@ -6,6 +6,7 @@
 #define CHATPROJECT_REGISTER_H
 
 #include <map>
+#include <list>
 #include "Chat.h"
 
 class User;
@@ -22,7 +23,7 @@ public:
 
     void newChat(User &me, User &other);
 
-    void deleteChat(User &me, User &other);
+    bool deleteChat(User &me, User &other);
 
     std::map<std::string, Chat *> chats;
 };

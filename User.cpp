@@ -10,10 +10,11 @@ std::string User::getName() const {
 
 void User::newChat(User &other) {
     userChats->newChat(*this, other);
+    other.userChats->newChat(other, *this);
 }
 
-void User::deleteChat(User &other) {
-    userChats->deleteChat(*this, other);
+bool User::deleteChat(User &other) {
+    return userChats->deleteChat(*this, other);
 }
 
 Chat &User::getChat(User &other) {

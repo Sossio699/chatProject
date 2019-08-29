@@ -25,7 +25,7 @@ public:
 
     void newChat(User &other);
 
-    void deleteChat(User &other);
+    bool deleteChat(User &other);
 
     Chat &getChat(User &other);
 
@@ -33,9 +33,8 @@ public:
 
     bool searchMessage(const User &u, const Message &m);
 
-    Register *userChats;
-
 private:
+    Register *userChats;
     std::string userName;
 };
 
