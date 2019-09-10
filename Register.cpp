@@ -17,3 +17,10 @@ bool Register::deleteChat(User &me, User &other) {
     }
     return false;
 }
+
+int Register::getUnread() const {
+    int unread = 0;
+    for (const auto &i : chats)
+        unread += i.second->getUnread();
+    return unread;
+}

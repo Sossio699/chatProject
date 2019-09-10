@@ -34,3 +34,11 @@ bool Message::operator==(const Message &m) const {
 float Message::getHour() const {
     return hour;
 }
+
+bool Message::isRead() const {
+    return read;
+}
+
+void Message::setRead(bool r) {
+    read = r;
+}

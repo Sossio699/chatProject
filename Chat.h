@@ -16,17 +16,15 @@ class Message;
 
 class Chat {
 public:
-    Chat(User &m, User &o) : me(m), other(o) {
-        messages.reserve(100);
-    }
+    Chat(User &m, User &o);
 
     ~Chat() {
         messages.erase(messages.begin(), messages.end());
     }
 
-    User &getOther() const;
+    User getOther() const;
 
-    User &getMe() const;
+    User getMe() const;
 
     void addMessage(const Message &m);
 
@@ -35,6 +33,11 @@ public:
     bool searchMessage(const Message &m);
 
     bool searchMessage(float hour);
+
+    void setAllRead();
+
+    int getUnread() const;
+
 private:
     User &me;
     User &other;

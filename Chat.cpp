@@ -4,11 +4,15 @@
 
 #include "Chat.h"
 
-User &Chat::getOther() const {
+Chat::Chat(User &m, User &o) : me(m), other(o) {
+    messages.reserve(100);
+}
+
+User Chat::getOther() const {
     return other;
 }
 
-User &Chat::getMe() const {
+User Chat::getMe() const {
     return me;
 }
 
@@ -45,4 +49,18 @@ bool Chat::searchMessage(float hour) {
         i++;
     }
     return found;
+}
+
+void Chat::setAllRead() {
+    for (std::vector<Message>::iterator i = messages.begin(); i != messages.end(); i++)
+        i->setRead(true);
+}
+
+int Chat::getUnread() const {
+    int unread = 0;
+    for (std::vector<Message>::const_iterator i = messages.begin(); i != messages.end(); i++) {
+        if (!i->isRead())
+            unread++;
+    }
+    return unread;
 }

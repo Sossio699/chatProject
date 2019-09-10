@@ -21,6 +21,10 @@ Chat &User::getChat(User &other) {
     return *(userChats->chats[other.getName()]);
 }
 
+void User::readChat(User &other) {
+    userChats->chats[other.getName()]->setAllRead();
+}
+
 bool User::operator==(const User &u) const {
     if (userName == u.userName)
         return true;
@@ -38,4 +42,8 @@ bool User::searchMessage(const User &u, const Message &m) {
         return found;
     }
     return false;
+}
+
+int User::getUread() const {
+    return userChats->getUnread();
 }

@@ -17,6 +17,8 @@ TEST(Chat, Constructors) {
     ASSERT_EQ(n, u.getName());
     Message m("first", "second", "hello", 0);
     ASSERT_EQ(m.getReceiver(), v.getName());
+    Message o("second", "first", "hi", 23.75);
+    ASSERT_EQ(o.getHour(), 0);
     Chat c(u, v);
     ASSERT_EQ(c.getMe(), u);
     ASSERT_EQ(c.getOther(), v);
@@ -62,4 +64,24 @@ TEST(Chat, Deleting) {
     ASSERT_EQ(u.deleteChat(v), true);
     ASSERT_EQ(u.deleteChat(v), false);
     ASSERT_EQ(v.getChat(u).searchMessage(m), true);
+}
+
+TEST(Chat, ReadMessage) {
+    Register r;
+    Register s;
+    User u("first", r);
+    User v("second", s);
+    Message m("first", "second", "hello", 17.32);
+    u.newChat(v);
+    u.getChat(v).addMessage(m);
+    ASSERT_EQ(m.isRead(), false);
+    ASSERT_EQ(u.getChat(v).getUnread(), 1);
+    Message n("second", "first", "hi", 17.40);
+    Message o("first", "second", "...", 18);
+    v.getChat(u).addMessage(n);
+    u.getChat(v).addMessage(o);
+    ASSERT_EQ(u.getUread(), 3);
+    u.getChat(v).setAllRead();
+    ASSERT_EQ(u.getChat(v).getUnread(), 0);
+    ASSERT_EQ(v.getChat(u).getUnread(), 3);
 }

@@ -29,9 +29,13 @@ public:
 
     Chat &getChat(User &other);
 
+    void readChat(User &other);
+
     bool operator==(const User &u) const;
 
     bool searchMessage(const User &u, const Message &m);
+
+    int getUread() const;
 
 private:
     Register *userChats;

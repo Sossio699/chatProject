@@ -25,6 +25,8 @@ public:
 
     bool deleteChat(User &me, User &other);
 
+    int getUnread() const;
+
     std::map<std::string, Chat *> chats;
 };
 
